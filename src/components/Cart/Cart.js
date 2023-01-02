@@ -10,9 +10,13 @@ function Cart({ onClose }) {
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
   const hasItems = cartCtx.items.length > 0;
 
-  function cartItemAddHandler(item) {}
+  function cartItemAddHandler(item) {
+    cartCtx.addItem({ ...item, amount: 1 });
+  }
 
-  function cartItemRemoveHandler(id) {}
+  function cartItemRemoveHandler(id) {
+    cartCtx.removeItem(id);
+  }
 
   return (
     <Modal onClose={onClose}>
@@ -23,8 +27,8 @@ function Cart({ onClose }) {
             name={item.name}
             amount={item.amount}
             price={item.price}
-            onAdd={cartItemAddHandler.bind(null, item.id)}
-            onRemove={cartItemRemoveHandler.bind(null, item)}
+            onAdd={cartItemAddHandler.bind(null, item)}
+            onRemove={cartItemRemoveHandler.bind(null, item.id)}
           />
         ))}
       </ul>
