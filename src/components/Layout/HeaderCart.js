@@ -6,7 +6,7 @@ function HeaderCart({ onClick }) {
   return (
     <button className={classes.button} onClick={onClick}>
       <span className={classes.icon}>
-        <CartIcon></CartIcon>
+        <CartIcon />
       </span>
       <span>Cart</span>
       <span className={classes.badge}>3</span>
