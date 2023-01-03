@@ -24,6 +24,19 @@ function Cart({ onClose }) {
     setIsCheckout(true);
   }
 
+  function submitOrderHandler(data) {
+    fetch(
+      "https://react-food-225d0-default-rtdb.europe-west1.firebasedatabase.app/orders.json",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          user: data,
+          orderedItems: cartCtx.items,
+        }),
+      }
+    );
+  }
+
   return (
     <Modal onClose={onClose}>
       <ul className={classes.items}>
@@ -42,7 +55,9 @@ function Cart({ onClose }) {
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
-      {isCheckout && <Checkout onCancel={onClose} />}
+      {isCheckout && (
+        <Checkout onConfirm={submitOrderHandler} onCancel={onClose} />
+      )}
       {!isCheckout && (
         <div className={classes.actions}>
           <button className={classes["button--alt"]} onClick={onClose}>
