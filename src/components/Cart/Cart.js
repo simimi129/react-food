@@ -40,6 +40,7 @@ function Cart({ onClose }) {
     );
     setIsSubmitting(false);
     setDidSubmit(true);
+    cartCtx.clearCart();
   }
 
   const cartModalContent = (
